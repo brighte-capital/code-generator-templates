@@ -2,7 +2,7 @@
     "name": "brightecapital/code-generator-templates",
     "description": "Templates for code generation based on openApi specification. Based on OpenAPITools/openapi-generator",
     "type": "library",
-    "license": "GNU",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Chris Young",
