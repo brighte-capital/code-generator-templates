@@ -34,19 +34,14 @@ class {{classname}}
      *         description="<%responseDescription%>",<%#$ref%>
      *         ref="<%$ref%>",<%/$ref%><%^$ref%>
      *         @OA\JsonContent(
-     *             type="<%type%>",
-<%#items%>
-     *             @OA\Items(ref="<%$ref%>")
-<%/items%>
-     *         )
-<%/$ref%>
-
+     *             type="<%type%>"<%#items%>,
+     *             @OA\Items(ref="<%$ref%>")<%/items%>
+     *         )<%/$ref%>
 <%/schema%>
 <%^schema%>
 
 <%/schema%>
-     *     )
-<%/responses%>
+     *     )<%/responses%>
 <%^responses%>
 
 <%/responses%>
@@ -56,17 +51,17 @@ class {{classname}}
      * @param \Psr\Http\Message\ServerRequestInterface $request Request
 {{/hasQueryParams}}
      * @param \Psr\Http\Message\ResponseInterface $response Response
-{{#hasPathParams}},
+{{#hasPathParams}}
      * @param (int|string|float)[] $args Path arguments
 {{/hasPathParams}}
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function {{operationId}}(
 {{#hasQueryParams}}
-        ServerRequestInterface $request,
+        ServerRequestInterface $request
 {{/hasQueryParams}}
         ResponseInterface $response
-{{#hasPathParams}},
+{{#hasPathParams}}
         array $args
 {{/hasPathParams}}
     ): ResponseInterface
