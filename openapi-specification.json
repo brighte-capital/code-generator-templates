@@ -1,0 +1,203 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "microservice-api",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.brighte.com.au/v1/",
+            "description": "Brighte Production API"
+        },
+        {
+            "url": "https://api.staging.brightelabs.com.au/v1/",
+            "description": "Brighte Staging API"
+        },
+        {
+            "url": "https://api.uat.brightelabs.com.au/v1/",
+            "description": "Brighte UAT API"
+        },
+        {
+            "url": "http://localhost:8080/v1/",
+            "description": "Local Development"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Get users",
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2": [
+                            "read:users",
+                            "admin:users"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/healthcheck": {
+            "get": {
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health Check",
+                "description": "Checks health of app.",
+                "operationId": "healthCheck",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/specification": {
+            "get": {
+                "tags": [
+                    "docs"
+                ],
+                "summary": "Specification",
+                "description": "Provides openAPI specification.",
+                "operationId": "getSpecification",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/docs": {
+            "get": {
+                "tags": [
+                    "docs"
+                ],
+                "summary": "Documentation",
+                "description": "Provides swagger UI.",
+                "operationId": "getDocumentation",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/html": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "mobile": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "dob": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lastLogin": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "created": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "modified": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deleted": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "oauth2": {
+                "type": "oauth2",
+                "description": "Brighte Identity Service for Microservices",
+                "flows": {
+                    "password": {
+                        "tokenUrl": "/v1/identity/legacy-authenticate",
+                        "refreshUrl": "/v1/identity/legacy-authenticate",
+                        "scopes": {
+                            "read:users": "Grant access GET request to users",
+                            "write:users": "Grant access POST request to users",
+                            "admin:users": "Grant to manage users on behalf to others"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

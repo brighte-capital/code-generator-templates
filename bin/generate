@@ -1,0 +1,5 @@
+#!/bin/sh
+docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+    -i /local/openapi-specification.json \
+    -t /local/dist/templates/$1 \
+    -g $1 -o /local/out/$1

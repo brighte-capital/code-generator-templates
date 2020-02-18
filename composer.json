@@ -9,5 +9,8 @@
             "email": "chris.young@brighte.com.au"
         }
     ],
-    "require": {}
+    "require": {},
+    "scripts": {
+        "generate": "bin/generate"
+    }
 }
