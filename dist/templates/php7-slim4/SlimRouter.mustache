@@ -26,7 +26,7 @@
  * @OA\SecurityScheme(
  *     type="{{type}}",
  *     description="{{authDescription}}",
- *     securityScheme="{{type}}",
+ *     securityScheme="{{type}}"{{#flow}},
  *     @OA\Flow(
  *         flow="{{flow}}",
  *         tokenUrl="{{tokenUrl}}",
@@ -36,7 +36,7 @@
  *             "{{scope}}": "{{description}}"{{#hasMore}},{{/hasMore}}
  {{/scopes}}
  *         }
- *     )
+ *     ){{/flow}}
  * )
  {{/authMethods}}
  {{/hasAuthMethods}}
