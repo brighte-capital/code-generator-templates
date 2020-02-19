@@ -35,11 +35,9 @@ class {{userClassname}}Test extends \Tests\BaseUnitTestCase
      */
     public function test{{operationIdCamelCase}}(): void
     {
-        {{#hasQueryParams}}
         $request = $this->createMock(RequestInterface::class);
-        {{/hasQueryParams}}
         $response = new Response();
-        $response = $this->api->{{operationId}}({{#hasQueryParams}}$request, {{/hasQueryParams}}$response, []);
+        $response = $this->api->{{operationId}}($request, $response, []);
     }
     {{/operation}}
 }

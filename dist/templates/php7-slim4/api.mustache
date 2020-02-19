@@ -58,11 +58,14 @@ class {{classname}}
      */
     public function {{operationId}}(
 {{#hasQueryParams}}
-        ServerRequestInterface $request
+        ServerRequestInterface $request,
 {{/hasQueryParams}}
-        ResponseInterface $response
-{{#hasPathParams}}
+{{#hasBodyParam}}
+        ServerRequestInterface $request,
+{{/hasBodyParam}}
+        ResponseInterface $response{{#hasPathParams}},
         array $args
+{{/hasPathParams}}{{^hasPathParams}}
 {{/hasPathParams}}
     ): ResponseInterface
     {
