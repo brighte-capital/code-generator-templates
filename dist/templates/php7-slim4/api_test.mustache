@@ -35,9 +35,12 @@ class {{userClassname}}Test extends \Tests\BaseUnitTestCase
      */
     public function test{{operationIdCamelCase}}(): void
     {
+        {{#hasBodyParam}}
         $request = $this->createMock(ServerRequestInterface::class);
+        {{/hasBodyParam}}
         $response = new Response();
-        $response = $this->api->{{operationId}}($request, $response, []);
+        $response = $this->api->{{operationId}}({{#hasBodyParam}}$request, {{/hasBodyParam}}$response{{#hasPathParams}}, [{{#pathParams}}'{{baseName}}' => '{{baseName}}'{{#hasMore}},{{/hasMore}}{{/pathParams}}]{{/hasPathParams}});
+        $this->assertEquals(200, $response->getStatusCode());
     }
     {{/operation}}
 }
