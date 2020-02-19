@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace {{apiPackage}};
 
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Slim\Psr7\Response;
 
 /**
@@ -35,7 +35,7 @@ class {{userClassname}}Test extends \Tests\BaseUnitTestCase
      */
     public function test{{operationIdCamelCase}}(): void
     {
-        $request = $this->createMock(RequestInterface::class);
+        $request = $this->createMock(ServerRequestInterface::class);
         $response = new Response();
         $response = $this->api->{{operationId}}($request, $response, []);
     }
