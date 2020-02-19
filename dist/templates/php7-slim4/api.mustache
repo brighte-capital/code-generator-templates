@@ -30,9 +30,9 @@ class {{classname}}
      *     tags={<%#tags%>"<%name%>"<%/tags%>}<%#hasAuthMethods%>,
      *     security={<%#authMethods%>{"<%name%>": {<%#scopes%>"<%scope%>"<%#hasMore%>, <%/hasMore%><%/scopes%>}}<%/authMethods%>}<%/hasAuthMethods%><%#responses%>,
      *     @OA\Response(
-     *         response="<%code%>"<%#schema%>,
-     *         description="<%responseDescription%>",<%#$ref%>
-     *         ref="<%$ref%>",<%/$ref%><%^$ref%>
+     *         response="<%code%>"<%#schema%>,<%#$ref%>
+     *         ref="<%$ref%>",<%/$ref%><%^$ref%>,
+     *         description="<%responseDescription%>"
      *         @OA\JsonContent(
      *             type="<%type%>"<%#items%>,
      *             @OA\Items(ref="<%$ref%>")<%/items%>
